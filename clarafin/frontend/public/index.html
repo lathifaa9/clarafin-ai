@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarafin • SME Financial Intelligence Agent</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mercuryNavy: '#0c1524',
+                        mercurySlate: '#1e293b',
+                        mercuryOffwhite: '#f8fafc',
+                        mercuryGold: '#b45309', // Premium gold accent
+                        mercuryGoldHover: '#d97706',
+                        mercuryBorder: '#e2e8f0',
+                        mercuryCard: '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body className="antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            // --- Navigation & Auth State ---
+            const [token, setToken] = useState(localStorage.getItem('clarafin_token') || '');
+            const [email, setEmail] = useState('');
+            const [password, setPassword] = useState('');
+            const [isRegistering, setIsRegistering] = useState(false);
+            
+            // --- API Key & Config ---
+            const [apiKey, setApiKey] = useState(localStorage.getItem('clarafin_gemini_key') || '');
+            
+            // --- Documents State ---
+            const [documents, setDocuments] = useState([]);
+            const [selectedDocs, setSelectedDocs] = useState([]);
+            const [isUploading, setIsUploading] = useState(false);
+            
+            // --- Analysis Pipeline State ---
+            const [analysisId, setAnalysisId] = useState(null);
+            const [analysisStatus, setAnalysisStatus] = useState('');
+            const [progressMsg, setProgressMsg] = useState('');
+            const [analysisResult, setAnalysisResult] = useState(null);
+            const [polling, setPolling] = useState(false);
+            
+            // --- UI States ---
+            const [selectedCitation, setSelectedCitation] = useState(null);
+            const [activeTab, setActiveTab] = useState('current_state');
+            const [chatMessage, setChatMessage] = useState('');
+            const [chatLog, setChatLog] = useState([
+                { role: 'assistant', text: "Hello, I am Clarafin's Document Intelligence Agent. Please upload your documents on the left. I will autonomously parse them, compute ratios, inspect gaps, and flag forward risks." }
+            ]);
+
+            // --- Timeline Steps Mapping ---
+            const [timelineSteps, setTimelineSteps] = useState([
+                { id: 1, label: "Reading documents", status: "idle" },
+                { id: 2, label: "Computing financial signals & margin trend", status: "idle" },
+                { id: 3, label: "Cross-checking against expected document set", status: "idle" },
+                { id: 4, label: "Flagging forward-looking trajectory risks", status: "idle" }
+            ]);
+
+            useEffect(() => {
+                if (token) {
+                    fetchDocuments();
+                }
+            }, [token]);
+
+            useEffect(() => {
+                let interval;
+                if (polling && analysisId) {
+                    interval = setInterval(async () => {
+                        try {
+                            const res = await fetch(`/analysis/${analysisId}`, {
+                                headers: { 'Authorization': `Bearer ${token}` }
+                            });
+                            const data = await res.json();
+                            setAnalysisStatus(data.status);
+                            setProgressMsg(data.progress_message);
+                            
+                            // Map progress message to timeline steps
+                            const msg = data.progress_message.lower_case || data.progress_message.toLowerCase();
+                            setTimelineSteps(prev => prev.map(step => {
+                                if (step.id === 1) {
+                                    if (msg.includes("read") || msg.includes("pars")) return { ...step, status: "active" };
+                                    if (msg.includes("embedding") || msg.includes("scrap") || msg.includes("margin") || msg.includes("only") || msg.includes("checking") || msg.includes("complete")) return { ...step, status: "done" };
+                                }
+                                if (step.id === 2) {
+                                    if (msg.includes("margin") || msg.includes("trend") || msg.includes("signal")) return { ...step, status: "active" };
+                                    if (msg.includes("only") || msg.includes("checking") || msg.includes("complete")) return { ...step, status: "done" };
+                                }
+                                if (step.id === 3) {
+                                    if (msg.includes("only") || msg.includes("checking") || msg.includes("expected")) return { ...step, status: "active" };
+                                    if (msg.includes("flagging") || msg.includes("complete")) return { ...step, status: "done" };
+                                }
+                                if (step.id === 4) {
+                                    if (msg.includes("flagging")) return { ...step, status: "active" };
+                                    if (msg.includes("complete")) return { ...step, status: "done" };
+                                }
+                                return step;
+                            }));
+
+                            if (data.status === 'finished') {
+                                setAnalysisResult(data.result);
+                                setPolling(false);
+                                setTimelineSteps(prev => prev.map(s => ({ ...s, status: "done" })));
+                            } else if (data.status === 'failed') {
+                                setPolling(false);
+                            }
+                        } catch (e) {
+                            console.error("Error polling analysis:", e);
+                            setPolling(false);
+                            setAnalysisStatus('failed');
+                        }
+                    }, 1200);
+                }
+                return () => clearInterval(interval);
+            }, [polling, analysisId]);
+
+            const fetchDocuments = async () => {
+                try {
+                    const res = await fetch(`/documents`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.status === 401) {
+                        handleLogout();
+                        return;
+                    }
+                    const data = await res.json();
+                    setDocuments(data);
+                } catch (e) {
+                    console.error("Error listing documents:", e);
+                }
+            };
+
+            const handleAuth = async (e) => {
+                e.preventDefault();
+                const endpoint = isRegistering ? '/auth/signup' : '/auth/login';
+                try {
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) {
+                        alert(data.detail || 'Authentication failed');
+                        return;
+                    }
+                    if (isRegistering) {
+                        setIsRegistering(false);
+                        alert('Signup complete! Please log in.');
+                    } else {
+                        localStorage.setItem('clarafin_token', data.access_token);
+                        setToken(data.access_token);
+                    }
+                } catch (err) {
+                    alert('Server error connecting to authentication.');
+                }
+            };
+
+            const handleDemoLogin = async () => {
+                try {
+                    const res = await fetch('/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: 'demo@clarafin.com', password: 'demo1234' })
+                    });
+                    const data = await res.json();
+                    if (data.access_token) {
+                        localStorage.setItem('clarafin_token', data.access_token);
+                        setToken(data.access_token);
+                    } else {
+                        alert('Demo login failed');
+                    }
+                } catch (err) {
+                    alert('Demo connection failed');
+                }
+            };
+
+            const handleLogout = () => {
+                localStorage.removeItem('clarafin_token');
+                setToken('');
+                setDocuments([]);
+                setSelectedDocs([]);
+                setAnalysisResult(null);
+                setAnalysisStatus('');
+                setPolling(false);
+            };
+
+            const handleFileUpload = async (e) => {
+                const files = e.target.files;
+                if (!files || files.length === 0) return;
+                setIsUploading(true);
+                for (let file of files) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    try {
+                        await fetch('/documents/upload', {
+                            method: 'POST',
+                            headers: { 'Authorization': `Bearer ${token}` },
+                            body: formData
+                        });
+                    } catch (err) {
+                        console.error("Upload error:", err);
+                    }
+                }
+                setIsUploading(false);
+                fetchDocuments();
+            };
+
+            const toggleSelectDoc = (id) => {
+                if (selectedDocs.includes(id)) {
+                    setSelectedDocs(selectedDocs.filter(d => d !== id));
+                } else {
+                    setSelectedDocs([...selectedDocs, id]);
+                }
+            };
+
+            const handleRunAnalysis = async () => {
+                if (selectedDocs.length === 0) {
+                    alert("Please select at least one document to analyze.");
+                    return;
+                }
+                
+                setAnalysisResult(null);
+                setAnalysisStatus('pending');
+                setTimelineSteps([
+                    { id: 1, label: "Reading documents", status: "idle" },
+                    { id: 2, label: "Computing financial signals & margin trend", status: "idle" },
+                    { id: 3, label: "Cross-checking against expected document set", status: "idle" },
+                    { id: 4, label: "Flagging forward-looking trajectory risks", status: "idle" }
+                ]);
+                
+                try {
+                    const res = await fetch(`/analysis/run`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            doc_ids: selectedDocs,
+                            gemini_api_key: apiKey || null
+                        })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) {
+                        alert(data.detail || 'Failed to start analysis');
+                        setAnalysisStatus('failed');
+                        return;
+                    }
+                    setAnalysisId(data.id);
+                    setPolling(true);
+                } catch (err) {
+                    setAnalysisStatus('failed');
+                }
+            };
+
+            const saveApiKey = (key) => {
+                setApiKey(key);
+                localStorage.setItem('clarafin_gemini_key', key);
+            };
+
+            const handleSendMessage = (e) => {
+                e.preventDefault();
+                if (!chatMessage.trim()) return;
+                
+                const msg = chatMessage.trim();
+                setChatLog(prev => [...prev, { role: 'user', text: msg }]);
+                setChatMessage('');
+                
+                setTimeout(() => {
+                    const q = msg.toLowerCase();
+                    if (q.includes('loan') || q.includes('tax') || q.includes('invest') || q.includes('should i')) {
+                        setChatLog(prev => [...prev, {
+                            role: 'assistant',
+                            text: "I am programmed to analyze historical data and detect gaps or trajectories. I cannot make recommendations or advise on whether you should take out a loan or make specific investments. Please consult a qualified certified accountant or certified financial planner."
+                        }]);
+                    } else {
+                        setChatLog(prev => [...prev, {
+                            role: 'assistant',
+                            text: "I am an analysis agent. Select documents on the left and run analysis to get started."
+                        }]);
+                    }
+                }, 800);
+            };
+
+            // --- Authentication Screen ---
+            if (!token) {
+                return (
+                    <div className="min-h-screen flex items-center justify-center bg-[#0c1524] text-slate-100 p-6">
+                        <div className="w-full max-w-sm p-8 bg-[#162235] border border-white/5 rounded-xl shadow-2xl">
+                            <div className="flex flex-col items-center mb-6">
+                                <div className="text-amber-500 font-black text-2xl tracking-wider mb-1">CLARAFIN</div>
+                                <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Document Intelligence</p>
+                            </div>
+                            
+                            <form onSubmit={handleAuth} className="space-y-4">
+                                <div>
+                                    <label className="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Email Address</label>
+                                    <input 
+                                        type="email" 
+                                        value={email}
+                                        onChange={e => setEmail(e.target.value)}
+                                        placeholder="name@company.com" 
+                                        className="w-full px-3 py-2 rounded bg-[#0c1524] border border-slate-700 text-xs text-white focus:outline-none focus:border-amber-500"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Password</label>
+                                    <input 
+                                        type="password" 
+                                        value={password}
+                                        onChange={e => setPassword(e.target.value)}
+                                        placeholder="••••••••" 
+                                        className="w-full px-3 py-2 rounded bg-[#0c1524] border border-slate-700 text-xs text-white focus:outline-none focus:border-amber-500"
+                                        required
+                                    />
+                                </div>
+                                
+                                <button 
+                                    type="submit" 
+                                    className="w-full py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded transition"
+                                >
+                                    {isRegistering ? 'Sign Up' : 'Sign In'}
+                                </button>
+                                
+                                <div className="flex items-center justify-between text-[11px] pt-3 border-t border-white/5">
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setIsRegistering(!isRegistering)}
+                                        className="text-slate-400 hover:text-slate-200"
+                                    >
+                                        {isRegistering ? 'Already have an account? Sign In' : 'Create new account'}
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        onClick={handleDemoLogin}
+                                        className="text-amber-500 font-bold hover:text-amber-400"
+                                    >
+                                        ⚡ Demo Entry
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                );
+            }
+
+            // --- Dashboard Screen ---
+            return (
+                <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
+                    
+                    {/* Mercury Header */}
+                    <header className="bg-[#0c1524] text-white px-6 py-4 flex justify-between items-center border-b border-white/5 shadow-md">
+                        <div className="flex items-center gap-3">
+                            <span className="text-amber-500 font-black tracking-widest text-lg">CLARAFIN</span>
+                            <div className="h-4 w-px bg-white/20"></div>
+                            <span className="text-xs text-slate-400 font-medium">SME Financial Intelligence Agent</span>
+                        </div>
+                        
+                        <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] text-slate-400 uppercase tracking-widest">Gemini API Key:</span>
+                                <input 
+                                    type="password" 
+                                    value={apiKey}
+                                    onChange={e => saveApiKey(e.target.value)}
+                                    placeholder="Paste API key..." 
+                                    className="bg-slate-800 border border-slate-700 text-xs px-2 py-1 rounded text-slate-300 w-44 focus:outline-none focus:border-amber-500"
+                                />
+                            </div>
+                            
+                            <button 
+                                onClick={handleLogout}
+                                className="text-xs border border-white/10 px-3 py-1 rounded hover:bg-white/5 transition"
+                            >
+                                Log Out
+                            </button>
+                        </div>
+                    </header>
+
+                    {/* Workspace layout */}
+                    <main className="flex-1 flex overflow-hidden">
+                        
+                        {/* Left Catalog panel */}
+                        <section className="w-80 border-r border-slate-200 bg-white flex flex-col p-4 shadow-sm">
+                            <div className="mb-4">
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Upload Files</label>
+                                <div className="border border-dashed border-slate-200 hover:border-amber-500 rounded-lg p-6 text-center cursor-pointer transition relative bg-slate-50 group">
+                                    <input 
+                                        type="file" 
+                                        multiple 
+                                        onChange={handleFileUpload} 
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                        disabled={isUploading}
+                                    />
+                                    <svg className="w-6 h-6 text-slate-400 group-hover:text-amber-600 mx-auto mb-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                    </svg>
+                                    <p className="text-xs text-slate-600 font-semibold">Upload Documents</p>
+                                    <p className="text-[9px] text-slate-400 mt-0.5">PDF, CSV, XLSX</p>
+                                </div>
+                                {isUploading && <p className="text-[10px] text-amber-600 animate-pulse mt-1 text-center">Uploading files...</p>}
+                            </div>
+
+                            <div className="flex-1 flex flex-col overflow-y-auto">
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Document Catalog</span>
+                                
+                                {documents.length === 0 ? (
+                                    <p className="text-xs text-slate-400 text-center py-8">Catalog is empty.</p>
+                                ) : (
+                                    <div className="space-y-1.5">
+                                        {documents.map(doc => {
+                                            const isSelected = selectedDocs.includes(doc.id);
+                                            return (
+                                                <div 
+                                                    key={doc.id}
+                                                    onClick={() => toggleSelectDoc(doc.id)}
+                                                    className={`p-2.5 rounded border cursor-pointer transition flex items-center justify-between ${
+                                                        isSelected ? 'border-amber-600 bg-amber-500/5' : 'border-slate-100 hover:border-slate-200 bg-slate-50'
+                                                    }`}
+                                                >
+                                                    <div className="flex items-center gap-2.5 truncate">
+                                                        <input type="checkbox" checked={isSelected} readOnly className="rounded border-slate-300 text-amber-600 focus:ring-0 w-3 h-3" />
+                                                        <div className="truncate">
+                                                            <p className="text-xs font-semibold text-slate-700 truncate w-40">{doc.filename}</p>
+                                                            <p className="text-[9px] text-slate-400 uppercase">{doc.doc_type} • {(doc.file_size/1024).toFixed(1)} KB</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="pt-4 border-t border-slate-100">
+                                <button
+                                    onClick={handleRunAnalysis}
+                                    disabled={selectedDocs.length === 0 || polling}
+                                    className={`w-full py-2 rounded text-xs font-bold text-white transition ${
+                                        selectedDocs.length === 0 || polling ? 'bg-slate-300 cursor-not-allowed' : 'bg-amber-700 hover:bg-amber-600'
+                                    }`}
+                                >
+                                    {polling ? 'Processing Pipeline...' : 'Run Autonomous Analysis'}
+                                </button>
+                            </div>
+                        </section>
+
+                        {/* Center Display Workspace */}
+                        <section className="flex-1 flex flex-col overflow-hidden bg-slate-50 p-6">
+                            
+                            {/* Running progress view */}
+                            {analysisStatus && polling && (
+                                <div className="bg-white border border-slate-200 rounded-lg p-5 mb-6 shadow-sm">
+                                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Live Agent Steps</h3>
+                                    <div className="space-y-2 text-xs">
+                                        {timelineSteps.map(step => {
+                                            let icon = "○";
+                                            let color = "text-slate-400";
+                                            if (step.status === "active") { icon = "⟳"; color = "text-amber-600 font-bold animate-spin inline-block"; }
+                                            if (step.status === "done") { icon = "✓"; color = "text-emerald-600 font-bold"; }
+                                            return (
+                                                <div key={step.id} className={`flex items-center gap-2.5 ${color}`}>
+                                                    <span className="w-4 text-center">{icon}</span>
+                                                    <span>{step.label}</span>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Blank / Result Screen */}
+                            {!analysisResult ? (
+                                <div className="flex-1 flex flex-col items-center justify-center border border-slate-200 border-dashed rounded-xl bg-white p-8">
+                                    <svg className="w-12 h-12 text-slate-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <h2 className="text-sm font-bold text-slate-700 uppercase tracking-wider">No Analysis Loaded</h2>
+                                    <p className="text-xs text-slate-400 mt-1 max-w-xs text-center">Select documents on the left and trigger analysis to populate reports.</p>
+                                </div>
+                            ) : (
+                                <div className="flex-1 flex flex-col overflow-hidden bg-white border border-slate-200 rounded-lg shadow-sm">
+                                    
+                                    {/* Tabs */}
+                                    <div className="flex border-b border-slate-200 bg-slate-50">
+                                        <button 
+                                            onClick={() => setActiveTab('current_state')}
+                                            className={`px-6 py-3 text-xs font-bold uppercase tracking-wider border-b-2 transition ${
+                                                activeTab === 'current_state' ? 'border-amber-600 text-amber-800 bg-white' : 'border-transparent text-slate-500 hover:text-slate-700'
+                                            }`}
+                                        >
+                                            Current State Analysis
+                                        </button>
+                                        <button 
+                                            onClick={() => setActiveTab('gaps')}
+                                            className={`px-6 py-3 text-xs font-bold uppercase tracking-wider border-b-2 transition ${
+                                                activeTab === 'gaps' ? 'border-amber-600 text-amber-800 bg-white' : 'border-transparent text-slate-500 hover:text-slate-700'
+                                            }`}
+                                        >
+                                            Gaps Detected
+                                        </button>
+                                        <button 
+                                            onClick={() => setActiveTab('flags')}
+                                            className={`px-6 py-3 text-xs font-bold uppercase tracking-wider border-b-2 transition ${
+                                                activeTab === 'flags' ? 'border-amber-600 text-amber-800 bg-white' : 'border-transparent text-slate-500 hover:text-slate-700'
+                                            }`}
+                                        >
+                                            Forward Trajectory Flags
+                                        </button>
+                                    </div>
+
+                                    {/* Tab Contents */}
+                                    <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                                        
+                                        {/* TAB 1: Current State */}
+                                        {activeTab === 'current_state' && (
+                                            <div className="space-y-6">
+                                                {/* Metric List */}
+                                                <div className="grid grid-cols-3 gap-5">
+                                                    {/* Liquidity */}
+                                                    <div className="p-4 border border-slate-100 rounded-lg bg-slate-50">
+                                                        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Liquidity Metrics</span>
+                                                        <div className="text-base font-bold text-slate-800">{analysisResult.current_state.liquidity.value}</div>
+                                                        <p className="text-[11px] text-slate-500 mt-1">{analysisResult.current_state.liquidity.interpretation}</p>
+                                                        
+                                                        {analysisResult.current_state.liquidity.citations.map((c, i) => (
+                                                            <button 
+                                                                key={i} 
+                                                                onClick={() => setSelectedCitation(c)}
+                                                                className="mt-3 text-[10px] text-amber-700 hover:underline block"
+                                                            >
+                                                                📄 {c.doc} ({c.loc})
+                                                            </button>
+                                                        ))}
+                                                    </div>
+
+                                                    {/* Margins */}
+                                                    <div className="p-4 border border-slate-100 rounded-lg bg-slate-50">
+                                                        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Margin Trend</span>
+                                                        <div className="text-base font-bold text-slate-800">{analysisResult.current_state.margins.value}</div>
+                                                        <p className="text-[11px] text-slate-500 mt-1">{analysisResult.current_state.margins.interpretation}</p>
+                                                        
+                                                        {analysisResult.current_state.margins.citations.map((c, i) => (
+                                                            <button 
+                                                                key={i} 
+                                                                onClick={() => setSelectedCitation(c)}
+                                                                className="mt-3 text-[10px] text-amber-700 hover:underline block"
+                                                            >
+                                                                📄 {c.doc} ({c.loc})
+                                                            </button>
+                                                        ))}
+                                                    </div>
+
+                                                    {/* Concentration */}
+                                                    <div className="p-4 border border-slate-100 rounded-lg bg-slate-50">
+                                                        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Revenue Concentration</span>
+                                                        <div className="text-base font-bold text-slate-800">{analysisResult.current_state.concentration.value}</div>
+                                                        <p className="text-[11px] text-slate-500 mt-1">{analysisResult.current_state.concentration.interpretation}</p>
+                                                        
+                                                        {analysisResult.current_state.concentration.citations.map((c, i) => (
+                                                            <button 
+                                                                key={i} 
+                                                                onClick={() => setSelectedCitation(c)}
+                                                                className="mt-3 text-[10px] text-amber-700 hover:underline block"
+                                                            >
+                                                                📄 {c.doc} ({c.loc})
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                {/* Anomalies */}
+                                                <div className="border border-slate-100 rounded-lg p-5">
+                                                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Expense Anomalies & Spikes</h4>
+                                                    <div className="space-y-3">
+                                                        {analysisResult.current_state.anomalies.map((anom, idx) => (
+                                                            <div key={idx} className="p-3 bg-red-500/5 border border-red-200/40 rounded">
+                                                                <h5 className="text-xs font-bold text-slate-800">{anom.title}</h5>
+                                                                <p className="text-[11px] text-slate-600 mt-0.5">{anom.description}</p>
+                                                                {anom.citations.map((c, i) => (
+                                                                    <button 
+                                                                        key={i} 
+                                                                        onClick={() => setSelectedCitation(c)}
+                                                                        className="mt-2 text-[10px] text-amber-700 hover:underline flex items-center gap-1"
+                                                                    >
+                                                                        📄 {c.doc} ({c.loc})
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* TAB 2: Gaps */}
+                                        {activeTab === 'gaps' && (
+                                            <div className="space-y-4">
+                                                <div className="p-3 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
+                                                    💡 **Reminder**: Missing files are flagged to guide decision precision, not as bookkeeping errors.
+                                                </div>
+
+                                                {analysisResult.gap_detection.map((gap, idx) => (
+                                                    <div key={idx} className="p-4 border border-amber-100 bg-amber-50/20 rounded-lg">
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="text-[9px] bg-amber-600 text-white font-bold px-1.5 py-0.5 rounded uppercase">Gap</span>
+                                                            <h4 className="text-xs font-bold text-amber-900">{gap.missing_item}</h4>
+                                                        </div>
+                                                        <p className="text-[11px] text-slate-600 mt-2 font-semibold">Blocked Business Decision:</p>
+                                                        <p className="text-[11px] text-slate-700 mt-0.5">{gap.blocked_decision}</p>
+                                                        <p className="text-[11px] text-slate-600 mt-2 font-semibold">Why it matters:</p>
+                                                        <p className="text-[11px] text-slate-700 mt-0.5">{gap.explanation}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {/* TAB 3: Forward Trajectory */}
+                                        {activeTab === 'flags' && (
+                                            <div className="space-y-4">
+                                                <div className="p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-500 italic">
+                                                    📌 Trajectory Notice: Observations are pattern-based observations, not predictive forecasts.
+                                                </div>
+
+                                                {analysisResult.forward_flags.map((flag, idx) => (
+                                                    <div key={idx} className="p-4 border border-slate-100 rounded-lg bg-slate-50">
+                                                        <div className="flex justify-between items-center mb-1">
+                                                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{flag.flag_type}</span>
+                                                            <span className="text-[9px] bg-slate-800 text-white font-bold px-2 py-0.5 rounded uppercase">{flag.severity} Severity</span>
+                                                        </div>
+                                                        <p className="text-xs text-slate-600 mt-1.5">{flag.trajectory_observation}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </section>
+
+                        {/* Right Citation Side Drawer */}
+                        {selectedCitation && (
+                            <section className="w-80 border-l border-slate-200 bg-white flex flex-col p-4 shadow-md transition-all">
+                                <div className="flex justify-between items-center pb-2 border-b border-slate-100 mb-3">
+                                    <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Source Document Preview</span>
+                                    <button onClick={() => setSelectedCitation(null)} className="text-xs text-slate-400 hover:text-slate-600">Close [x]</button>
+                                </div>
+                                <div className="space-y-4 text-xs">
+                                    <div>
+                                        <span className="text-[10px] text-slate-400 font-bold block uppercase mb-0.5">Source File</span>
+                                        <div className="font-semibold text-slate-800">{selectedCitation.doc}</div>
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-slate-400 font-bold block uppercase mb-0.5">Location details</span>
+                                        <div className="font-mono text-slate-700">{selectedCitation.loc}</div>
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-slate-400 font-bold block uppercase mb-1">Exact Cited Record</span>
+                                        <div className="p-3 bg-amber-500/10 border border-amber-500/25 text-amber-900 rounded font-semibold break-words">
+                                            {selectedCitation.text}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        )}
+                    </main>
+
+                    {/* Chat Sandbox Console (Bottom) */}
+                    <footer className="bg-[#0c1524] text-slate-300 p-4 border-t border-white/5">
+                        <div className="max-w-4xl mx-auto flex items-center justify-between gap-6">
+                            <div className="w-1/2">
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Advisory Boundary Q&A Console</span>
+                                <div className="h-16 overflow-y-auto mb-2 text-xs space-y-1.5 border border-white/5 rounded p-2 bg-[#080d16]">
+                                    {chatLog.map((c, i) => (
+                                        <div key={i} className={`flex ${c.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                            <div className={`p-1.5 rounded max-w-xs ${c.role === 'user' ? 'bg-amber-600/30 text-amber-200' : 'bg-slate-800 text-slate-300'}`}>
+                                                {c.text}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <form onSubmit={handleSendMessage} className="flex gap-2">
+                                    <input 
+                                        type="text" 
+                                        value={chatMessage}
+                                        onChange={e => setChatMessage(e.target.value)}
+                                        placeholder="Ask a question (e.g. 'Should I take out a loan?')..." 
+                                        className="flex-1 px-3 py-1.5 bg-[#080d16] border border-slate-700 text-xs rounded text-slate-200 focus:outline-none focus:border-amber-500"
+                                    />
+                                    <button type="submit" className="bg-amber-700 hover:bg-amber-600 px-3 py-1.5 text-xs text-white rounded font-bold">Ask</button>
+                                </form>
+                            </div>
+                            
+                            <div className="w-1/2 text-[11px] text-slate-400 bg-[#080d16] p-3 rounded border border-white/5">
+                                <span className="font-bold text-amber-500 block mb-0.5">⚠️ Honest Limitation Notice</span>
+                                For V1, the agent requires a single bank statement covering at least one full period for a partial audit. Gaps in transaction history will flag determinability barriers (e.g., missing March Cash Burn computations).
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

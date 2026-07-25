@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sme-intelligence-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./finance_agent.db:/app/finance_agent.db
+    restart: always

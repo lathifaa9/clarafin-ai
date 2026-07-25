@@ -1,0 +1,271 @@
+{"kind":"deck","id":"pr/3tnpwt","name":"Deck"}
+{"kind":"layout","layoutId":"6564df6d-2093-4c76-bb30-2c0e0d2f675d","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"70c597f6-1011-4564-94bb-c5f01ea1e579","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/cuyj3a","slide":1,"title":"CLARAFIN","textShapes":6}
+{"kind":"textbox","id":"sh/rql4buxk","slide":1,"text":"CLARAFIN","textPreview":"CLARAFIN","textChars":8,"textLines":1,"bbox":[64,54,260,28]}
+{"kind":"textbox","id":"sh/cru5kze5","slide":1,"text":"Financial clarity,\ngrounded in your documents.","textPreview":"Financial clarity, | grounded in your documents.","textChars":46,"textLines":2,"bbox":[64,165,720,175]}
+{"kind":"textbox","id":"sh/ds36d4fq","slide":1,"text":"A source-aware financial-document intelligence workspace for SMEs","textPreview":"A source-aware financial-document intelligence workspace for SMEs","textChars":65,"textLines":1,"bbox":[68,367,600,35]}
+{"kind":"shape","id":"sh/etcnmpwv","slide":1,"bbox":[814,116,348,410]}
+{"kind":"textbox","id":"sh/zulofuxg","slide":1,"text":"PDF\nCSV\nXLSX","textPreview":"PDF | CSV | XLSX","textChars":12,"textLines":3,"bbox":[856,170,240,142]}
+{"kind":"shape","id":"sh/0vu5oze1","slide":1,"bbox":[856,335,260,2]}
+{"kind":"textbox","id":"sh/1w36h4fm","slide":1,"text":"Upload → analyze → act\nwith evidence","textPreview":"Upload → analyze → act | with evidence","textChars":36,"textLines":2,"bbox":[856,365,235,72]}
+{"kind":"textbox","id":"sh/mxcnq9w7","slide":1,"text":"Team presentation · 4 speakers","textPreview":"Team presentation · 4 speakers","textChars":30,"textLines":1,"bbox":[68,616,330,22]}
+{"kind":"notes","id":"nt/cuyj3a","slide":1,"text":"Presenter 1\n\nWelcome everyone. We are presenting Clarafin, a financial-document intelligence workspace designed for SMEs. The central idea is simple: turn scattered finance files into a clear, evidence-backed understanding of the business.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/ox3rxg","slide":2,"title":"THE PROBLEM","textShapes":12}
+{"kind":"textbox","id":"sh/jylcbqx4","slide":2,"text":"THE PROBLEM","textPreview":"THE PROBLEM","textChars":11,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/kzud4vy9","slide":2,"text":"Finance teams have the documents — but not a single, reliable view.","textPreview":"Finance teams have the documents — but not a single, reliable view.","textChars":67,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/l03ud0fu","slide":2,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/atcve1g7","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/bulc76xs","slide":2,"bbox":[76,224,14,14]}
+{"kind":"textbox","id":"sh/wvudgbyd","slide":2,"text":"Scattered sources","textPreview":"Scattered sources","textChars":17,"textLines":1,"bbox":[104,220,450,28]}
+{"kind":"textbox","id":"sh/xw3u9gfy","slide":2,"text":"Bank statements, P&L reports, invoices, and spreadsheets sit in different places.","textPreview":"Bank statements, P&L reports, invoices, and spreadsheets sit in different places.","textChars":81,"textLines":1,"bbox":[104,253,450,52]}
+{"kind":"shape","id":"sh/upwva5gr","slide":2,"bbox":[76,355,14,14]}
+{"kind":"textbox","id":"sh/fq5wjaxw","slide":2,"text":"Manual interpretation","textPreview":"Manual interpretation","textChars":21,"textLines":1,"bbox":[104,351,450,28]}
+{"kind":"textbox","id":"sh/filsb2po","slide":2,"text":"Teams spend time reading files and reconciling clues instead of making decisions.","textPreview":"Teams spend time reading files and reconciling clues instead of making decisions.","textChars":81,"textLines":1,"bbox":[104,384,450,52]}
+{"kind":"shape","id":"sh/ehcbixo3","slide":2,"bbox":[76,486,14,14]}
+{"kind":"textbox","id":"sh/143adc7u","slide":2,"text":"Uncertain conclusions","textPreview":"Uncertain conclusions","textChars":21,"textLines":1,"bbox":[104,482,450,28]}
+{"kind":"textbox","id":"sh/0jutk769","slide":2,"text":"Without traceability, it is difficult to defend a metric or know what information is missing.","textPreview":"Without traceability, it is difficult to defend a metric or know what information is missing.","textChars":93,"textLines":1,"bbox":[104,515,450,52]}
+{"kind":"shape","id":"sh/n6lcf2pk","slide":2,"bbox":[720,218,440,314]}
+{"kind":"textbox","id":"sh/25cbmhof","slide":2,"text":"The gap","textPreview":"The gap","textChars":7,"textLines":1,"bbox":[762,255,260,32]}
+{"kind":"textbox","id":"sh/p8nuhc7q","slide":2,"text":"Raw financial files\nshould become\nclear decisions.","textPreview":"Raw financial files | should become | clear decisions.","textChars":50,"textLines":3,"bbox":[762,310,315,128]}
+{"kind":"textbox","id":"sh/o7uto765","slide":2,"text":"…without inventing figures.","textPreview":"…without inventing figures.","textChars":27,"textLines":1,"bbox":[762,463,300,28]}
+{"kind":"notes","id":"nt/ox3rxg","slide":2,"text":"Presenter 1\n\nSmall and medium businesses often already possess the key financial records. The challenge is that the records are fragmented, analysis is manual, and conclusions are hard to validate. Clarafin focuses on the gap between having documents and having decision-ready insight.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/so68f7","slide":3,"title":"OUR ANSWER","textShapes":19}
+{"kind":"textbox","id":"sh/vit4rehc","slide":3,"text":"OUR ANSWER","textPreview":"OUR ANSWER","textChars":10,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/wj2lkjix","slide":3,"text":"Clarafin turns uploaded financial records into an auditable financial workspace.","textPreview":"Clarafin turns uploaded financial records into an auditable financial workspace.","textChars":80,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/xkvmtozi","slide":3,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/mtk3e90v","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/nut4nehg","slide":3,"bbox":[62,232,252,250]}
+{"kind":"textbox","id":"sh/8f2lgji1","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[87,255,50,44]}
+{"kind":"textbox","id":"sh/9gbmpozm","slide":3,"text":"Ingest","textPreview":"Ingest","textChars":6,"textLines":1,"bbox":[87,326,190,30]}
+{"kind":"textbox","id":"sh/6p4nqd0z","slide":3,"text":"Upload supported financial files securely.","textPreview":"Upload supported financial files securely.","textChars":42,"textLines":1,"bbox":[87,370,200,68]}
+{"kind":"textbox","id":"sh/rqd4zyhk","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[320,330,25,30]}
+{"kind":"shape","id":"sh/fqhwj29g","slide":3,"bbox":[354,232,252,250]}
+{"kind":"textbox","id":"sh/up8fax8v","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[379,255,50,44]}
+{"kind":"textbox","id":"sh/hszelsr6","slide":3,"text":"Interpret","textPreview":"Interpret","textChars":9,"textLines":1,"bbox":[379,326,190,30]}
+{"kind":"textbox","id":"sh/grqxcnq1","slide":3,"text":"Parse content and organize it by document type.","textPreview":"Parse content and organize it by document type.","textChars":47,"textLines":1,"bbox":[379,370,200,68]}
+{"kind":"textbox","id":"sh/3ehwn29c","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[612,330,25,30]}
+{"kind":"shape","id":"sh/2d8fex8r","slide":3,"bbox":[646,232,252,250]}
+{"kind":"textbox","id":"sh/pgze9cri","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[671,255,50,44]}
+{"kind":"textbox","id":"sh/4fqxg7qx","slide":3,"text":"Reason","textPreview":"Reason","textChars":6,"textLines":1,"bbox":[671,326,190,30]}
+{"kind":"textbox","id":"sh/ri1wbm9o","slide":3,"text":"Analyze current state, gaps, and forward flags.","textPreview":"Analyze current state, gaps, and forward flags.","textChars":47,"textLines":1,"bbox":[671,370,200,68]}
+{"kind":"textbox","id":"sh/qhsfih83","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[904,330,25,30]}
+{"kind":"shape","id":"sh/mdczalsb","slide":3,"bbox":[938,232,252,250]}
+{"kind":"textbox","id":"sh/nel0jqtw","slide":3,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[963,255,50,44]}
+{"kind":"textbox","id":"sh/ofuhcba1","slide":3,"text":"Trace","textPreview":"Trace","textChars":5,"textLines":1,"bbox":[963,326,190,30]}
+{"kind":"textbox","id":"sh/9gnilgbm","slide":3,"text":"Link findings back to cited source evidence.","textPreview":"Link findings back to cited source evidence.","textChars":44,"textLines":1,"bbox":[963,370,200,68]}
+{"kind":"textbox","id":"sh/e9cz61sz","slide":3,"text":"The product never treats an unsupported claim as a fact.","textPreview":"The product never treats an unsupported claim as a fact.","textChars":56,"textLines":1,"bbox":[62,556,770,30]}
+{"kind":"notes","id":"nt/so68f7","slide":3,"text":"Presenter 1\n\nClarafin creates a structured flow from ingestion through reasoning to evidence. The important product principle is grounded analysis: when the documents do not support an answer, the product says so instead of guessing.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/fvhgem","slide":4,"title":"THE USER JOURNEY","textShapes":23}
+{"kind":"textbox","id":"sh/bqxsne1o","slide":4,"text":"THE USER JOURNEY","textPreview":"THE USER JOURNEY","textChars":16,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/wb6twj29","slide":4,"text":"One workflow takes a team from raw files to a focused financial review.","textPreview":"One workflow takes a team from raw files to a focused financial review.","textChars":71,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/xcfap4ju","slide":4,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/2l4rqpk7","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"textbox","id":"sh/nmdsjuls","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[65,218,70,28]}
+{"kind":"shape","id":"sh/onm9sz2x","slide":4,"bbox":[65,267,170,112]}
+{"kind":"textbox","id":"sh/9oval43i","slide":4,"text":"Sign in","textPreview":"Sign in","textChars":7,"textLines":1,"bbox":[81,288,130,26]}
+{"kind":"textbox","id":"sh/6h8b2tkb","slide":4,"text":"Use the workspace securely.","textPreview":"Use the workspace securely.","textChars":27,"textLines":1,"bbox":[81,328,138,38]}
+{"kind":"textbox","id":"sh/7ihsvy1w","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[244,305,40,26]}
+{"kind":"textbox","id":"sh/3m9wr694","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[294,218,70,28]}
+{"kind":"shape","id":"sh/il0fi1sj","slide":4,"bbox":[294,267,170,112]}
+{"kind":"textbox","id":"sh/5obetgra","slide":4,"text":"Upload","textPreview":"Upload","textChars":6,"textLines":1,"bbox":[310,288,130,26]}
+{"kind":"textbox","id":"sh/4nixkbap","slide":4,"text":"Add PDF, CSV, XLSX, or XLS files.","textPreview":"Add PDF, CSV, XLSX, or XLS files.","textChars":33,"textLines":1,"bbox":[310,328,138,38]}
+{"kind":"textbox","id":"sh/rqtwvq9g","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[473,305,40,26]}
+{"kind":"textbox","id":"sh/qpkfmlsv","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[523,218,70,28]}
+{"kind":"shape","id":"sh/dcbexgrm","slide":4,"bbox":[523,267,170,112]}
+{"kind":"textbox","id":"sh/sr2xova1","slide":4,"text":"Select","textPreview":"Select","textChars":6,"textLines":1,"bbox":[539,288,130,26]}
+{"kind":"textbox","id":"sh/fetwzq9c","slide":4,"text":"Choose the documents that matter.","textPreview":"Choose the documents that matter.","textChars":33,"textLines":1,"bbox":[539,328,138,38]}
+{"kind":"textbox","id":"sh/edkfqlsr","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[702,305,40,26]}
+{"kind":"textbox","id":"sh/a9ozypcz","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[752,218,70,28]}
+{"kind":"shape","id":"sh/bax0rutk","slide":4,"bbox":[752,267,170,112]}
+{"kind":"textbox","id":"sh/wb6h0zu5","slide":4,"text":"Analyze","textPreview":"Analyze","textChars":7,"textLines":1,"bbox":[768,288,130,26]}
+{"kind":"textbox","id":"sh/xcfit4bq","slide":4,"text":"Run the source-aware analysis.","textPreview":"Run the source-aware analysis.","textChars":30,"textLines":1,"bbox":[768,328,138,38]}
+{"kind":"textbox","id":"sh/ml4zupc3","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[931,305,40,26]}
+{"kind":"textbox","id":"sh/n6dgnuto","slide":4,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[981,218,70,28]}
+{"kind":"shape","id":"sh/o76hwfu9","slide":4,"bbox":[981,267,170,112]}
+{"kind":"textbox","id":"sh/98fipkbu","slide":4,"text":"Review","textPreview":"Review","textChars":6,"textLines":1,"bbox":[997,288,130,26]}
+{"kind":"textbox","id":"sh/6h8zq9c7","slide":4,"text":"Inspect signals, gaps, flags, and citations.","textPreview":"Inspect signals, gaps, flags, and citations.","textChars":44,"textLines":1,"bbox":[997,328,138,38]}
+{"kind":"textbox","id":"sh/72h0zets","slide":4,"text":"The analysis starts from the selected documents — not from assumptions.","textPreview":"The analysis starts from the selected documents — not from assumptions.","textChars":71,"textLines":1,"bbox":[65,485,900,36]}
+{"kind":"notes","id":"nt/fvhgem","slide":4,"text":"Presenter 2\n\nThis is the end-to-end user journey. A user signs in, uploads documents, chooses the relevant set, and triggers analysis. The workspace then returns a clear review of the current state, gaps, risks, and the citations that support every finding.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/j4mhdj","slide":5,"title":"PRODUCT ARCHITECTURE","textShapes":20}
+{"kind":"textbox","id":"sh/lgz6h43a","slide":5,"text":"PRODUCT ARCHITECTURE","textPreview":"PRODUCT ARCHITECTURE","textChars":20,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/yt8nmp4j","slide":5,"text":"A lightweight web application connects document ingestion, retrieval, and financial reasoning.","textPreview":"A lightweight web application connects document ingestion, retrieval, and financial reasoning.","textChars":94,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/zuh4ful4","slide":5,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/8ja5szm1","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/9kj6l436","slide":5,"bbox":[72,220,232,106]}
+{"kind":"textbox","id":"sh/mhsnqp4v","slide":5,"text":"React frontend","textPreview":"React frontend","textChars":14,"textLines":1,"bbox":[90,240,195,26]}
+{"kind":"textbox","id":"sh/7i1ojulg","slide":5,"text":"Upload, selection, workspace","textPreview":"Upload, selection, workspace","textChars":28,"textLines":1,"bbox":[90,274,195,30]}
+{"kind":"shape","id":"sh/wna5wjmx","slide":5,"bbox":[384,220,232,106]}
+{"kind":"textbox","id":"sh/ho36po3i","slide":5,"text":"FastAPI backend","textPreview":"FastAPI backend","textChars":15,"textLines":1,"bbox":[402,240,195,26]}
+{"kind":"textbox","id":"sh/5kbi5o72","slide":5,"text":"Authentication, APIs, orchestration","textPreview":"Authentication, APIs, orchestration","textChars":35,"textLines":1,"bbox":[402,274,195,30]}
+{"kind":"shape","id":"sh/4j2hcjqh","slide":5,"bbox":[696,220,232,106]}
+{"kind":"textbox","id":"sh/3i903ypw","slide":5,"text":"Document layer","textPreview":"Document layer","textChars":14,"textLines":1,"bbox":[714,240,195,26]}
+{"kind":"textbox","id":"sh/ih0zat8b","slide":5,"text":"PDF / CSV / Excel parsing","textPreview":"PDF / CSV / Excel parsing","textChars":25,"textLines":1,"bbox":[714,274,195,30]}
+{"kind":"shape","id":"sh/dobi987y","slide":5,"bbox":[696,420,232,106]}
+{"kind":"textbox","id":"sh/sn2hg36t","slide":5,"text":"RAG layer","textPreview":"RAG layer","textChars":9,"textLines":1,"bbox":[714,440,195,26]}
+{"kind":"textbox","id":"sh/rmt07yp8","slide":5,"text":"Chunking, retrieval, context","textPreview":"Chunking, retrieval, context","textChars":28,"textLines":1,"bbox":[714,474,195,30]}
+{"kind":"shape","id":"sh/qlkzeton","slide":5,"bbox":[384,420,232,106]}
+{"kind":"textbox","id":"sh/tsrix47u","slide":5,"text":"AI analysis","textPreview":"AI analysis","textChars":11,"textLines":1,"bbox":[402,440,195,26]}
+{"kind":"textbox","id":"sh/8rih4zq9","slide":5,"text":"Groq-powered financial interpretation","textPreview":"Groq-powered financial interpretation","textChars":37,"textLines":1,"bbox":[402,474,195,30]}
+{"kind":"shape","id":"sh/k7m9032h","slide":5,"bbox":[72,420,232,106]}
+{"kind":"textbox","id":"sh/l8vq98j2","slide":5,"text":"SQLite storage","textPreview":"SQLite storage","textChars":14,"textLines":1,"bbox":[90,440,195,26]}
+{"kind":"textbox","id":"sh/yl4rytkb","slide":5,"text":"Users, documents, analyses","textPreview":"Users, documents, analyses","textChars":26,"textLines":1,"bbox":[90,474,195,30]}
+{"kind":"textbox","id":"sh/j6d87y1w","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[316,256,45,26]}
+{"kind":"textbox","id":"sh/8b694n2d","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[628,256,45,26]}
+{"kind":"textbox","id":"sh/tcfqdsjy","slide":5,"text":"↓","textPreview":"↓","textChars":1,"textLines":1,"bbox":[790,342,45,32]}
+{"kind":"textbox","id":"sh/694r2dkn","slide":5,"text":"←","textPreview":"←","textChars":1,"textLines":1,"bbox":[628,456,45,26]}
+{"kind":"textbox","id":"sh/7ax8bi18","slide":5,"text":"←","textPreview":"←","textChars":1,"textLines":1,"bbox":[316,456,45,26]}
+{"kind":"notes","id":"nt/j4mhdj","slide":5,"text":"Presenter 2\n\nThe solution uses a React frontend for the workspace and a FastAPI backend for protected operations. Documents are parsed into usable content, routed through retrieval and context-building, and then sent to the AI analysis layer. SQLite stores the core application records.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/so9y4x","slide":6,"title":"DOCUMENT INTELLIGENCE STARTS WITH THE SOURCE","textShapes":11}
+{"kind":"textbox","id":"sh/2d0365ov","slide":6,"text":"DOCUMENT INTELLIGENCE STARTS WITH THE SOURCE","textPreview":"DOCUMENT INTELLIGENCE STARTS WITH THE SOURCE","textChars":44,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/9gb21k76","slide":6,"text":"Clarafin accepts the financial formats SMEs already use and preserves their identity.","textPreview":"Clarafin accepts the financial formats SMEs already use and preserves their identity.","textChars":85,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/of2l8f6l","slide":6,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/fq9kvqp4","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/ep032loj","slide":6,"bbox":[72,226,320,215]}
+{"kind":"textbox","id":"sh/1cr2x07a","slide":6,"text":"PDF","textPreview":"PDF","textChars":3,"textLines":1,"bbox":[97,261,260,46]}
+{"kind":"textbox","id":"sh/0bil4v6p","slide":6,"text":"Statements and reports","textPreview":"Statements and reports","textChars":22,"textLines":1,"bbox":[97,331,250,54]}
+{"kind":"shape","id":"sh/jmt47up8","slide":6,"bbox":[442,226,320,215]}
+{"kind":"textbox","id":"sh/ylk3epo3","slide":6,"text":"CSV","textPreview":"CSV","textChars":3,"textLines":1,"bbox":[467,261,260,46]}
+{"kind":"textbox","id":"sh/obmhgnul","slide":6,"text":"Transaction exports and ledgers","textPreview":"Transaction exports and ledgers","textChars":31,"textLines":1,"bbox":[467,331,250,54]}
+{"kind":"shape","id":"sh/pcvipsv6","slide":6,"bbox":[812,226,320,215]}
+{"kind":"textbox","id":"sh/29kzedcf","slide":6,"text":"XLSX / XLS","textPreview":"XLSX / XLS","textChars":10,"textLines":1,"bbox":[837,261,260,46]}
+{"kind":"textbox","id":"sh/nadgnid0","slide":6,"text":"P&L, balance sheets, cash-flow files","textPreview":"P&L, balance sheets, cash-flow files","textChars":36,"textLines":1,"bbox":[837,331,250,54]}
+{"kind":"textbox","id":"sh/072hc3u9","slide":6,"text":"Upload validation","textPreview":"Upload validation","textChars":17,"textLines":1,"bbox":[72,510,230,28]}
+{"kind":"textbox","id":"sh/18byl8vu","slide":6,"text":"Supported file types · 20 MB maximum file size · user-owned document catalog","textPreview":"Supported file types · 20 MB maximum file size · user-owned document catalog","textChars":76,"textLines":1,"bbox":[72,549,900,30]}
+{"kind":"notes","id":"nt/so9y4x","slide":6,"text":"Presenter 2\n\nThe ingestion layer is designed around practical finance formats: PDF, CSV, XLSX, and XLS. It validates file type and size, records ownership, and builds a catalog the user can review before analysis. This gives the agent the correct boundary for every run.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/4fd3lx","slide":7,"title":"GROUNDED REASONING IS THE CORE DIFFERENTIATOR","textShapes":16}
+{"kind":"textbox","id":"sh/v2xw7i1c","slide":7,"text":"GROUNDED REASONING IS THE CORE DIFFERENTIATOR","textPreview":"GROUNDED REASONING IS THE CORE DIFFERENTIATOR","textChars":45,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/w36dgnix","slide":7,"text":"The agent uses document context and returns evidence instead of unsupported certainty.","textPreview":"The agent uses document context and returns evidence instead of unsupported certainty.","textChars":86,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/x4fe9sji","slide":7,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/mx4vad0v","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"textbox","id":"sh/nyxw3i1g","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[75,206,44,28]}
+{"kind":"textbox","id":"sh/8z6dcni1","slide":7,"text":"Parse","textPreview":"Parse","textChars":5,"textLines":1,"bbox":[144,206,150,28]}
+{"kind":"textbox","id":"sh/90fe58jm","slide":7,"text":"Extract relevant text, sheet data, and page or row context.","textPreview":"Extract relevant text, sheet data, and page or row context.","textChars":59,"textLines":1,"bbox":[330,206,735,48]}
+{"kind":"shape","id":"sh/6t8fmx0z","slide":7,"bbox":[75,261,1060,2]}
+{"kind":"textbox","id":"sh/ruhwf2hk","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[75,288,44,28]}
+{"kind":"textbox","id":"sh/ri1cfyhw","slide":7,"text":"Retrieve","textPreview":"Retrieve","textChars":8,"textLines":1,"bbox":[144,288,150,28]}
+{"kind":"textbox","id":"sh/qh8b6tgr","slide":7,"text":"Build a focused context from selected documents.","textPreview":"Build a focused context from selected documents.","textChars":48,"textLines":1,"bbox":[330,288,735,48]}
+{"kind":"shape","id":"sh/dkjuh8z2","slide":7,"bbox":[75,343,1060,2]}
+{"kind":"textbox","id":"sh/sjad83yh","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[75,370,44,28]}
+{"kind":"textbox","id":"sh/f61cjih8","slide":7,"text":"Analyze","textPreview":"Analyze","textChars":7,"textLines":1,"bbox":[144,370,150,28]}
+{"kind":"textbox","id":"sh/e5svadgn","slide":7,"text":"Assess liquidity, margins, concentration, anomalies, gaps, and flags.","textPreview":"Assess liquidity, margins, concentration, anomalies, gaps, and flags.","textChars":69,"textLines":1,"bbox":[330,370,735,48]}
+{"kind":"shape","id":"sh/18julsze","slide":7,"bbox":[75,425,1060,2]}
+{"kind":"textbox","id":"sh/07adcnyt","slide":7,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[75,452,44,28]}
+{"kind":"textbox","id":"sh/nalcnih4","slide":7,"text":"Cite","textPreview":"Cite","textChars":4,"textLines":1,"bbox":[144,452,150,28]}
+{"kind":"textbox","id":"sh/29svedgj","slide":7,"text":"Attach filename, location, and exact supporting text where available.","textPreview":"Attach filename, location, and exact supporting text where available.","textChars":69,"textLines":1,"bbox":[330,452,735,48]}
+{"kind":"shape","id":"sh/yhgn2l43","slide":7,"bbox":[75,507,1060,2]}
+{"kind":"textbox","id":"sh/jipovq5o","slide":7,"text":"If the evidence is missing, Clarafin reports: “cannot be determined from the uploaded documents.”","textPreview":"If the evidence is missing, Clarafin reports: “cannot be determined from the uploaded documents.”","textChars":97,"textLines":1,"bbox":[75,559,1030,33]}
+{"kind":"notes","id":"nt/4fd3lx","slide":7,"text":"Presenter 3\n\nThe AI is not asked to make up a financial story. It receives context built from the selected documents and is instructed to ground every metric and observation in those sources. A key safety rule is explicit: when the information is missing, the product tells the user what cannot be determined.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/cn1ei9","slide":8,"title":"TRUST IS BUILT INTO THE WORKFLOW","textShapes":11}
+{"kind":"textbox","id":"sh/xcvulknu","slide":8,"text":"TRUST IS BUILT INTO THE WORKFLOW","textPreview":"TRUST IS BUILT INTO THE WORKFLOW","textChars":32,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/a94bq543","slide":8,"text":"Authentication and document ownership keep each workspace scoped to the right user.","textPreview":"Authentication and document ownership keep each workspace scoped to the right user.","textChars":83,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/badcja5o","slide":8,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/kfmtwfm5","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/lgfupknq","slide":8,"bbox":[72,213,488,126]}
+{"kind":"textbox","id":"sh/yd4bup4z","slide":8,"text":"JWT access tokens","textPreview":"JWT access tokens","textChars":17,"textLines":1,"bbox":[96,235,420,28]}
+{"kind":"textbox","id":"sh/jedcna5k","slide":8,"text":"Protected routes require a signed access token.","textPreview":"Protected routes require a signed access token.","textChars":47,"textLines":1,"bbox":[96,275,420,42]}
+{"kind":"shape","id":"sh/0j2tkvm1","slide":8,"bbox":[622,213,488,126]}
+{"kind":"textbox","id":"sh/1kbad0nm","slide":8,"text":"User-scoped records","textPreview":"User-scoped records","textChars":19,"textLines":1,"bbox":[646,235,420,28]}
+{"kind":"textbox","id":"sh/14n6h07a","slide":8,"text":"Documents and analyses are filtered by owner.","textPreview":"Documents and analyses are filtered by owner.","textChars":45,"textLines":1,"bbox":[646,275,420,42]}
+{"kind":"shape","id":"sh/g3e58v6p","slide":8,"bbox":[72,378,488,126]}
+{"kind":"textbox","id":"sh/f25ofqpk","slide":8,"text":"Safe upload handling","textPreview":"Safe upload handling","textChars":20,"textLines":1,"bbox":[96,400,420,28]}
+{"kind":"textbox","id":"sh/e1wn6loz","slide":8,"text":"Filenames are normalized and supported formats are validated.","textPreview":"Filenames are normalized and supported formats are validated.","textChars":61,"textLines":1,"bbox":[96,440,420,42]}
+{"kind":"shape","id":"sh/psn6l07m","slide":8,"bbox":[622,378,488,126]}
+{"kind":"textbox","id":"sh/orepcv61","slide":8,"text":"Stable signing key","textPreview":"Stable signing key","textChars":18,"textLines":1,"bbox":[646,400,420,28]}
+{"kind":"textbox","id":"sh/3q5ojqpg","slide":8,"text":"The configured secret loads before auth initialization, so reloads do not invalidate active tokens.","textPreview":"The configured secret loads before auth initialization, so reloads do not invalidate active tokens.","textChars":99,"textLines":1,"bbox":[646,440,420,42]}
+{"kind":"notes","id":"nt/cn1ei9","slide":8,"text":"Presenter 3\n\nA financial workspace must keep data scoped correctly. Clarafin protects API routes with JWT access tokens and filters documents and analyses by the authenticated user. We also resolved a reload issue by loading the configured signing key before authentication initializes, so valid user sessions remain stable across a backend reload.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/sgob5i","slide":9,"title":"THE OUTPUT IS DESIGNED FOR ACTION","textShapes":12}
+{"kind":"textbox","id":"sh/5c3elg7a","slide":9,"text":"THE OUTPUT IS DESIGNED FOR ACTION","textPreview":"THE OUTPUT IS DESIGNED FOR ACTION","textChars":33,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/i9cfq1oz","slide":9,"text":"Clarafin presents the current state, blind spots, forward flags, and the evidence behind them.","textPreview":"Clarafin presents the current state, blind spots, forward flags, and the evidence behind them.","textChars":94,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/3alwj6pk","slide":9,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/sfuxwv61","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/dgnepg7m","slide":9,"bbox":[62,226,250,262]}
+{"kind":"textbox","id":"sh/qdcfulov","slide":9,"text":"Current state","textPreview":"Current state","textChars":13,"textLines":1,"bbox":[83,251,204,54]}
+{"kind":"textbox","id":"sh/relwnqpg","slide":9,"text":"Liquidity, margins, concentration, and transaction patterns.","textPreview":"Liquidity, margins, concentration, and transaction patterns.","textChars":60,"textLines":1,"bbox":[83,329,204,92]}
+{"kind":"shape","id":"sh/03ex0v6x","slide":9,"bbox":[354,226,250,262]}
+{"kind":"textbox","id":"sh/14net07i","slide":9,"text":"Gaps detected","textPreview":"Gaps detected","textChars":13,"textLines":1,"bbox":[375,251,204,54]}
+{"kind":"textbox","id":"sh/50z2dwne","slide":9,"text":"Missing records that block a confident decision.","textPreview":"Missing records that block a confident decision.","textChars":48,"textLines":1,"bbox":[375,329,204,92]}
+{"kind":"shape","id":"sh/4zqlkbmt","slide":9,"bbox":[646,226,250,262]}
+{"kind":"textbox","id":"sh/jehkb658","slide":9,"text":"Forward flags","textPreview":"Forward flags","textChars":13,"textLines":1,"bbox":[667,251,204,54]}
+{"kind":"textbox","id":"sh/id83i143","slide":9,"text":"Reasoned signals requiring follow-up.","textPreview":"Reasoned signals requiring follow-up.","textChars":37,"textLines":1,"bbox":[667,329,204,92]}
+{"kind":"shape","id":"sh/t4jmhg3q","slide":9,"bbox":[938,226,250,262]}
+{"kind":"textbox","id":"sh/s3alobm5","slide":9,"text":"Source traceability","textPreview":"Source traceability","textChars":19,"textLines":1,"bbox":[959,251,204,54]}
+{"kind":"textbox","id":"sh/r21kf65k","slide":9,"text":"Click through to the supporting document excerpt.","textPreview":"Click through to the supporting document excerpt.","textChars":49,"textLines":1,"bbox":[959,329,204,92]}
+{"kind":"textbox","id":"sh/61s3m14z","slide":9,"text":"The goal is not another dashboard. It is a defensible next conversation.","textPreview":"The goal is not another dashboard. It is a defensible next conversation.","textChars":72,"textLines":1,"bbox":[62,558,930,32]}
+{"kind":"notes","id":"nt/sgob5i","slide":9,"text":"Presenter 3\n\nThe results screen organizes the output into four decision-focused areas: the current state, the gaps that stop us from being certain, forward-looking flags, and traceability. This helps users move from “what does this file say?” to “what should we review next?”\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/9kq6az","slide":10,"title":"THE IMPLEMENTATION IS PRACTICAL AND EXTENSIBLE","textShapes":15}
+{"kind":"textbox","id":"sh/a9szi54j","slide":10,"text":"THE IMPLEMENTATION IS PRACTICAL AND EXTENSIBLE","textPreview":"THE IMPLEMENTATION IS PRACTICAL AND EXTENSIBLE","textChars":46,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/xwjydk3u","slide":10,"text":"A focused stack supports a working local product today and a stronger platform tomorrow.","textPreview":"A focused stack supports a working local product today and a stronger platform tomorrow.","textChars":88,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/wvahkfm9","slide":10,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/jylgfal0","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/yxczmp4f","slide":10,"bbox":[68,205,330,138]}
+{"kind":"textbox","id":"sh/l03yhk36","slide":10,"text":"Frontend","textPreview":"Frontend","textChars":8,"textLines":1,"bbox":[90,225,260,25]}
+{"kind":"textbox","id":"sh/kzuhofml","slide":10,"text":"React + Vite\nLucide UI icons","textPreview":"React + Vite | Lucide UI icons","textChars":28,"textLines":2,"bbox":[90,263,260,56]}
+{"kind":"shape","id":"sh/72lgjulw","slide":10,"bbox":[454,205,330,138]}
+{"kind":"textbox","id":"sh/61czqp4b","slide":10,"text":"Backend","textPreview":"Backend","textChars":7,"textLines":1,"bbox":[476,225,260,25]}
+{"kind":"textbox","id":"sh/g76dsby1","slide":10,"text":"FastAPI + Uvicorn\nPydantic models","textPreview":"FastAPI + Uvicorn | Pydantic models","textChars":33,"textLines":2,"bbox":[476,263,260,56]}
+{"kind":"shape","id":"sh/hsfu1gzm","slide":10,"bbox":[840,205,330,138]}
+{"kind":"textbox","id":"sh/u5ovq10b","slide":10,"text":"Data","textPreview":"Data","textChars":4,"textLines":1,"bbox":[862,225,260,25]}
+{"kind":"textbox","id":"sh/v6xcz6hw","slide":10,"text":"SQLite\nLocal upload storage","textPreview":"SQLite | Local upload storage","textChars":27,"textLines":2,"bbox":[862,263,260,56]}
+{"kind":"shape","id":"sh/4vqdwbyd","slide":10,"bbox":[68,390,330,138]}
+{"kind":"textbox","id":"sh/5wze5gzy","slide":10,"text":"Documents","textPreview":"Documents","textChars":9,"textLines":1,"bbox":[90,410,260,25]}
+{"kind":"textbox","id":"sh/itovu1g7","slide":10,"text":"pdfplumber\npandas + openpyxl","textPreview":"pdfplumber | pandas + openpyxl","textChars":28,"textLines":2,"bbox":[90,448,260,56]}
+{"kind":"shape","id":"sh/3uhc36hs","slide":10,"bbox":[454,390,330,138]}
+{"kind":"textbox","id":"sh/szqd0vy9","slide":10,"text":"AI","textPreview":"AI","textChars":2,"textLines":1,"bbox":[476,410,260,25]}
+{"kind":"textbox","id":"sh/d0ze90zu","slide":10,"text":"Groq API\nLlama model","textPreview":"Groq API | Llama model","textChars":20,"textLines":2,"bbox":[476,448,260,56]}
+{"kind":"shape","id":"sh/1gfutgry","slide":10,"bbox":[840,390,330,138]}
+{"kind":"textbox","id":"sh/0fmdkbqd","slide":10,"text":"Optional retrieval","textPreview":"Optional retrieval","textChars":18,"textLines":1,"bbox":[862,410,260,25]}
+{"kind":"textbox","id":"sh/zedcrq98","slide":10,"text":"Semantic RAG\nkeyword fallback","textPreview":"Semantic RAG | keyword fallback","textChars":29,"textLines":2,"bbox":[862,448,260,56]}
+{"kind":"notes","id":"nt/9kq6az","slide":10,"text":"Presenter 4\n\nThe technology choices prioritize speed of development and clarity. React and Vite give us a responsive frontend; FastAPI exposes typed APIs; SQLite keeps the prototype simple; and dedicated parsers support our document formats. The AI layer is configurable and can fall back gracefully when a key is unavailable.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/u7kd0g","slide":11,"title":"A SHORT DEMO MAKES THE VALUE TANGIBLE","textShapes":17}
+{"kind":"textbox","id":"sh/cbqtkfyl","slide":11,"text":"A SHORT DEMO MAKES THE VALUE TANGIBLE","textPreview":"A SHORT DEMO MAKES THE VALUE TANGIBLE","textChars":37,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/bahcbax0","slide":11,"text":"Upload a realistic document set, run the analysis, and inspect an evidence-backed result.","textPreview":"Upload a realistic document set, run the analysis, and inspect an evidence-backed result.","textChars":89,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/a9obi5gv","slide":11,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/l0zuhkfi","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"textbox","id":"sh/kzqtofyx","slide":11,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[78,204,48,26]}
+{"kind":"textbox","id":"sh/zyhcfaxc","slide":11,"text":"Open demo account","textPreview":"Open demo account","textChars":17,"textLines":1,"bbox":[155,204,245,26]}
+{"kind":"textbox","id":"sh/yd8bmpgr","slide":11,"text":"Use the seeded demo credentials.","textPreview":"Use the seeded demo credentials.","textChars":32,"textLines":1,"bbox":[442,204,590,35]}
+{"kind":"shape","id":"sh/14fa50fy","slide":11,"bbox":[78,258,955,2]}
+{"kind":"textbox","id":"sh/036tcvyd","slide":11,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[78,290,48,26]}
+{"kind":"textbox","id":"sh/u5snm5gf","slide":11,"text":"Upload a set","textPreview":"Upload a set","textChars":12,"textLines":1,"bbox":[155,290,245,26]}
+{"kind":"textbox","id":"sh/v614fax0","slide":11,"text":"Bank statement + P&L + invoice ledger.","textPreview":"Bank statement + P&L + invoice ledger.","textChars":38,"textLines":1,"bbox":[442,290,590,35]}
+{"kind":"shape","id":"sh/w7a5ovyl","slide":11,"bbox":[78,344,955,2]}
+{"kind":"textbox","id":"sh/hsjmh0f6","slide":11,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[78,376,48,26]}
+{"kind":"textbox","id":"sh/itcnq5gb","slide":11,"text":"Analyze","textPreview":"Analyze","textChars":7,"textLines":1,"bbox":[155,376,245,26]}
+{"kind":"textbox","id":"sh/3ul4jaxw","slide":11,"text":"Let the system parse and reason.","textPreview":"Let the system parse and reason.","textChars":32,"textLines":1,"bbox":[442,376,590,35]}
+{"kind":"shape","id":"sh/4vu5sfyh","slide":11,"bbox":[78,430,955,2]}
+{"kind":"textbox","id":"sh/5w36lkf2","slide":11,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[78,462,48,26]}
+{"kind":"textbox","id":"sh/qxcnupwn","slide":11,"text":"Inspect a finding","textPreview":"Inspect a finding","textChars":17,"textLines":1,"bbox":[155,462,245,26]}
+{"kind":"textbox","id":"sh/rylonux8","slide":11,"text":"Show the source citation and a meaningful gap.","textPreview":"Show the source citation and a meaningful gap.","textChars":46,"textLines":1,"bbox":[442,462,590,35]}
+{"kind":"shape","id":"sh/n254bud0","slide":11,"bbox":[78,516,955,2]}
+{"kind":"shape","id":"sh/21w3ipcv","slide":11,"bbox":[1032,204,150,328]}
+{"kind":"textbox","id":"sh/p4nmdkv6","slide":11,"text":"Demo\nfocus","textPreview":"Demo | focus","textChars":10,"textLines":2,"bbox":[1056,235,92,55]}
+{"kind":"textbox","id":"sh/o3elkzul","slide":11,"text":"Evidence\nnot\nassumptions","textPreview":"Evidence | not | assumptions","textChars":24,"textLines":3,"bbox":[1056,340,93,104]}
+{"kind":"notes","id":"nt/u7kd0g","slide":11,"text":"Presenter 4\n\nFor the live demo, we will use the demo account and upload a small but realistic document set. The audience should watch for the system to parse files, start analysis automatically, return a current-state insight, and clearly identify a gap when the documents cannot support a claim.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/5dnx8o","slide":12,"title":"OUR FOUR-PERSON PRESENTATION FLOW","textShapes":12}
+{"kind":"textbox","id":"sh/kryt4n6h","slide":12,"text":"OUR FOUR-PERSON PRESENTATION FLOW","textPreview":"OUR FOUR-PERSON PRESENTATION FLOW","textChars":33,"textLines":1,"bbox":[62,42,680,24]}
+{"kind":"textbox","id":"sh/jqpcbipw","slide":12,"text":"Each presenter owns a complete part of the story, with a clean handoff to the next.","textPreview":"Each presenter owns a complete part of the story, with a clean handoff to the next.","textChars":83,"textLines":1,"bbox":[62,76,1090,62]}
+{"kind":"shape","id":"sh/ypgb2dob","slide":12,"bbox":[62,152,1156,2]}
+{"kind":"textbox","id":"sh/tgruhc7y","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1164,656,54,22]}
+{"kind":"shape","id":"sh/8fyt876d","slide":12,"bbox":[60,235,258,232]}
+{"kind":"textbox","id":"sh/7epcf2ps","slide":12,"text":"Presenter 1","textPreview":"Presenter 1","textChars":11,"textLines":1,"bbox":[82,267,200,30]}
+{"kind":"textbox","id":"sh/6tgb6xo7","slide":12,"text":"Why now\nProblem + solution","textPreview":"Why now | Problem + solution","textChars":26,"textLines":2,"bbox":[82,335,205,74]}
+{"kind":"shape","id":"sh/hkrulc7u","slide":12,"bbox":[356,235,258,232]}
+{"kind":"textbox","id":"sh/gjitc769","slide":12,"text":"Presenter 2","textPreview":"Presenter 2","textChars":11,"textLines":1,"bbox":[378,267,200,30]}
+{"kind":"textbox","id":"sh/atcjytob","slide":12,"text":"How it works\nJourney + architecture + ingestion","textPreview":"How it works | Journey + architecture + ingestion","textChars":47,"textLines":2,"bbox":[378,335,205,74]}
+{"kind":"shape","id":"sh/bul0rypw","slide":12,"bbox":[652,235,258,232]}
+{"kind":"textbox","id":"sh/wfu1036h","slide":12,"text":"Presenter 3","textPreview":"Presenter 3","textChars":11,"textLines":1,"bbox":[674,267,200,30]}
+{"kind":"textbox","id":"sh/xg3it87m","slide":12,"text":"Why trust it\nGrounded analysis + security + outputs","textPreview":"Why trust it | Grounded analysis + security + outputs","textChars":51,"textLines":2,"bbox":[674,335,205,74]}
+{"kind":"shape","id":"sh/yhcj2do7","slide":12,"bbox":[948,235,258,232]}
+{"kind":"textbox","id":"sh/ji50vips","slide":12,"text":"Presenter 4","textPreview":"Presenter 4","textChars":11,"textLines":1,"bbox":[970,267,200,30]}
+{"kind":"textbox","id":"sh/kje1436d","slide":12,"text":"How we show it\nStack + demo + next steps","textPreview":"How we show it | Stack + demo + next steps","textChars":40,"textLines":2,"bbox":[970,335,205,74]}
+{"kind":"textbox","id":"sh/lknix87y","slide":12,"text":"Suggested handoff: “With the need established, I’ll hand over to …”","textPreview":"Suggested handoff: “With the need established, I’ll hand over to …”","textChars":67,"textLines":1,"bbox":[60,546,900,26]}
+{"kind":"notes","id":"nt/5dnx8o","slide":12,"text":"Presenter 4\n\nThis slide is for the team. The presentation is divided into four connected sections. Each person has a clear narrative responsibility and can hand off naturally to the next presenter. Replace the presenter labels with your names before presenting.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}
+{"kind":"slide","id":"sl/9znkf7","slide":13,"title":"CLARAFIN","textShapes":5}
+{"kind":"textbox","id":"sh/zux4belk","slide":13,"text":"CLARAFIN","textPreview":"CLARAFIN","textChars":8,"textLines":1,"bbox":[66,60,260,28]}
+{"kind":"textbox","id":"sh/kv65kjmp","slide":13,"text":"Financial decisions should be\nclear, grounded, and traceable.","textPreview":"Financial decisions should be | clear, grounded, and traceable.","textChars":61,"textLines":2,"bbox":[66,181,820,138]}
+{"kind":"textbox","id":"sh/lwfmdo3a","slide":13,"text":"Next: demonstrate the workspace with a real document set.","textPreview":"Next: demonstrate the workspace with a real document set.","textChars":57,"textLines":1,"bbox":[70,378,710,34]}
+{"kind":"shape","id":"sh/ap4ne94n","slide":13,"bbox":[70,452,1020,2]}
+{"kind":"textbox","id":"sh/bqd47el8","slide":13,"text":"Questions?","textPreview":"Questions?","textChars":10,"textLines":1,"bbox":[70,500,360,58]}
+{"kind":"textbox","id":"sh/crm5gjmt","slide":13,"text":"Thank you","textPreview":"Thank you","textChars":9,"textLines":1,"bbox":[70,591,240,34]}
+{"kind":"notes","id":"nt/9znkf7","slide":13,"text":"Presenter 4\n\nTo close, Clarafin gives SMEs an evidence-based way to understand financial documents. It combines familiar upload workflows with structured analysis, transparent gaps, and citations. We are ready to demonstrate the product and take questions.\n\n[Sources]\nProject repository: Clarafin README, frontend/src/App.jsx, backend/main.py, backend/database.py."}

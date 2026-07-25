@@ -1,0 +1,16 @@
+fastapi==0.110.0
+uvicorn==0.28.0
+python-multipart==0.0.9
+pyjwt==2.8.0
+passlib[bcrypt]==1.7.4
+# passlib 1.7.4 is incompatible with bcrypt 5.x.
+bcrypt==4.0.1
+# pandas 2.2.1 has no Python 3.13 wheel and triggers a local NumPy build.
+pandas==2.2.3
+openpyxl==3.1.2
+# Optional: install sentence-transformers==2.5.1 only when ENABLE_SEMANTIC_RAG=true.
+# The default keyword retrieval mode does not require the large Torch dependency.
+pdfplumber==0.10.4
+httpx==0.27.0
+beautifulsoup4==4.12.3
+python-dotenv==1.0.1

@@ -1,0 +1,5 @@
+AsOfDate,InvoiceID,CustomerName,InvoiceAmount,OutstandingAmount,DueDate,DaysPastDue,AgingBucket,CollectionStatus
+2026-07-25,INV-2026-006,Wayne Enterprises,15000.00,15000.00,2026-07-20,5,1-30 Days Past Due,Follow-up scheduled
+2026-07-25,INV-2026-007,LexCorp,5000.00,5000.00,2026-07-25,0,Current,Due today
+2026-07-25,INV-2026-008,ACME Corp,12500.00,12500.00,2026-08-15,0,Current,Not yet due
+2026-07-25,INV-2026-009,Stark Industries,8000.00,8000.00,2026-08-18,0,Current,Not yet due
