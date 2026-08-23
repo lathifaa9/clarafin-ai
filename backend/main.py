@@ -12,14 +12,15 @@ from fastapi.responses import FileResponse
 from typing import List, Optional
 from dotenv import load_dotenv
 
+# Load deployment and local configuration before importing modules that read it.
+load_dotenv()
+
 from backend.models import UserCreate, UserResponse, LoginRequest, TokenResponse, DocumentResponse, RunAnalysisRequest, AnalysisResponse
 import backend.database as db
 import backend.parser as parser
 import backend.scraper as scraper
 from backend.rag import RAGEngine
 import backend.analyzer as analyzer
-
-load_dotenv()
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
