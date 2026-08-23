@@ -4,6 +4,8 @@ Clarafin is a financial-document workspace for SMEs. Upload PDF, CSV, XLSX, or X
 
 ## Run locally
 
+Before starting, copy `.env.example` to `.env` and set a new `GROQ_API_KEY` and a persistent `SECRET_KEY`. Keep `.env` private; it must never be committed to Git.
+
 Open two PowerShell windows in this project folder.
 
 **Backend (first window)**
@@ -40,6 +42,10 @@ npm run build
 ```
 
 With the backend running, execute `python tests/test_backend.py` from the project root to exercise signup, login, upload, listing, and analysis polling.
+
+## Docker
+
+After configuring `.env`, run `docker compose up --build`. Open `http://localhost:8000`. The `SECRET_KEY` must remain unchanged between container restarts; changing it invalidates existing logins, which is expected.
 
 ## Notes
 

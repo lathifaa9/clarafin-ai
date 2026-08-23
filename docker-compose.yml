@@ -9,6 +9,9 @@ services:
       - "8000:8000"
     environment:
       - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL=${GROQ_MODEL:-llama-3.3-70b-versatile}
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env before starting Docker}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:8000,http://127.0.0.1:8000}
     volumes:
       - ./uploads:/app/uploads
       - ./finance_agent.db:/app/finance_agent.db

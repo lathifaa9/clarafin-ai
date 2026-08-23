@@ -1,8 +1,0 @@
-Date,Description,Amount,Balance,Category
-2026-01-01,Opening balance,0.00,40000.00,Opening Balance
-2026-01-05,Customer receipts,18000.00,58000.00,Revenue
-2026-01-10,Payroll,-9000.00,49000.00,Payroll
-2026-01-18,Supplier payments,-7000.00,42000.00,COGS
-2026-02-05,Customer receipts,18000.00,60000.00,Revenue
-2026-02-10,Payroll,-9000.00,51000.00,Payroll
-2026-02-20,Supplier payments,-10000.00,41000.00,COGS
